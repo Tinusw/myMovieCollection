@@ -1,6 +1,8 @@
 import React from 'react'
 import Slider from 'react-slick'
 import { connect } from 'react-redux'
+import {Icon} from 'react-fa'
+
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './MovieList.scss'
@@ -28,6 +30,7 @@ class MovieList extends React.Component{
             <Slider {...settings}>
               {b.images.map((b, i) =>
                 <div className="img-wrapper">
+                  <Icon name="trash" className="trash-icon" />
                   <img className="img-responsive" key={i} src={b.base64}></img>
                 </div>
               )}

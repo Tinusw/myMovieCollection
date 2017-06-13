@@ -1,7 +1,21 @@
 // Styling our text to overlay over image
+@import '../../styles/common/colors';
+@import '../../styles/common/fonts';
+
 .col-lg-2{
   position: relative;
   padding: 0;
+  .trash-icon {
+    position: absolute;
+    @extend %font-sh-extra-large;;
+    color: $m-blue-text;
+    margin-left: 29%;
+    transition: 1.5s;
+    &:hover{
+      transition: 1.5s;
+      color: $xd-blue-text;
+    }
+  }
   &:hover {
 
   }
