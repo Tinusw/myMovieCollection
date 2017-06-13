@@ -1,0 +1,29 @@
+img {
+  width:  100%;
+  background-position: 50% 50%;
+  background-repeat:   no-repeat;
+  background-size:     cover;
+}
+
+.image-slider{
+  background-color: grey;
+  padding: 0;
+}
+
+/*Overriding slick settings*/
+.slick-next{
+  right: 0px;
+  z-index: 99;
+  &:before{
+    color: black;
+  }
+}
+
+.slick-prev{
+  left: 0px;
+  // investigate why we need this z-index
+  z-index: 99;
+  &:before {
+    color: black;
+  }
+}

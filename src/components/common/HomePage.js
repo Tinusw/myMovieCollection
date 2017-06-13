@@ -1,9 +1,10 @@
 import React from 'react'
+import MovieList from '../../components/movie/MovieList'
 
 const Home = () => {
   return (
-    <div>
-      <h1>My Movie Collection</h1>
+    <div className="col-lg-12">
+      <MovieList/>
     </div>
   )
 }
