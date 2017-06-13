@@ -1,4 +1,14 @@
+## My Movie Collection
 
+A single page application where a user can manage their movie collection.
+
+## Getting Started
+`cd movie-collection`
+`npm start`
+
+## Tech & Tools
+
+### [Slingshot Boilerplate](https://github.com/coryhouse/react-slingshot)
 
 React Slingshot is a comprehensive starter kit for rapid application development using React.
 
@@ -8,12 +18,9 @@ Why Slingshot?
 2. **Rapid feedback** - Each time you hit save, changes hot reload and linting and automated tests run.
 3. **One command line to check** - All feedback is displayed on a single command line.
 4. **No more JavaScript fatigue** - Slingshot uses the most popular and powerful libraries for working with React.
-5. **Working example app** - The included example app shows how this all works together.
-6. **Automated production build** - Type `npm run build` to do all this:
+5. **Automated production build** - Type `npm run build` to do all this:
 
-[![React Slingshot Production Build](https://img.youtube.com/vi/qlfDLsX-J0U/0.jpg)](https://www.youtube.com/watch?v=qlfDLsX-J0U)
-
-## Technologies
+#### Technologies
 Slingshot offers a rich development experience using the following technologies:
 
 | **Tech** | **Description** |**Learn More**|
@@ -32,6 +39,8 @@ Slingshot offers a rich development experience using the following technologies:
 | [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
 | [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction), [Why not Gulp?](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n)  |
 
-The starter kit includes a working example app that puts all of the above to use.
-## Questions?
-Check out the [FAQ](/docs/FAQ.md)
+### [Redux](http://redux.js.org/)
+A predictable state container for JavaScript apps.
+
+### [React Router](https://github.com/ReactTraining/react-router)
+Declarative routing for React
