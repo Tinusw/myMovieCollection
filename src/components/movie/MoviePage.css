@@ -1,3 +1,24 @@
 img {
   width: 100%;
 }
+
+.image-slider{
+  background-color: grey;
+}
+
+/*Overriding slick settings*/
+.slick-next{
+  right: 0px;
+}
+
+.slick-left{
+  left: 0px;
+}
+
+.slick-prev:before {
+  color: black;
+}
+
+.slick-next:before {
+  color: black;
+}
