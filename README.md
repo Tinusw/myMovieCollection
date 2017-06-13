@@ -4,6 +4,7 @@ A single page application where a user can manage their movie collection.
 
 ## Getting Started
 `cd movie-collection`
+`npm install`
 `npm start`
 
 ## Tech & Tools
