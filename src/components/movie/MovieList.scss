@@ -10,9 +10,11 @@
     @extend %font-sh-extra-large;;
     color: $m-blue-text;
     margin-left: 29%;
-    transition: 1.5s;
+    transition: 1s;
+    z-index: 99;
+    cursor: pointer;
     &:hover{
-      transition: 1.5s;
+      transition: 0.5s;
       color: $xd-blue-text;
     }
   }

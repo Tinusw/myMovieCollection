@@ -1,11 +1,17 @@
-export default (state = [], action) => {
+const movies =(state= [], action) => {
   switch (action.type){
     case 'CREATE_MOVIE':
-        return [
-          ...state,
-          Object.assign({}, action.movie)
-        ];
+      return [
+        ...state,
+        Object.assign({}, action.movie)
+      ];
+    case 'DELETE_MOVIE':
+      return [
+        state.filter(({ id }) => id  !== action.id)
+      ]
     default:
-          return state;
+      return state
   }
 };
+
+export default movies

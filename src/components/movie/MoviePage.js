@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as movieActions from '../../actions/movieActions'
 import FileBase64 from 'react-file-base64'
-import Slider from 'react-slick'
+import { v4 } from 'uuid'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './moviePage.scss'
@@ -34,12 +34,6 @@ class Movie extends React.Component{
     let director
     let genre
     let description
-    let settings = {
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      autoplay: 500
-    }
 
     return (
       <div className="container">
@@ -62,7 +56,7 @@ class Movie extends React.Component{
           return
         }
         // Set our form values as an object
-        var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: this.state.files}
+        var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: this.state.files, id: v4()}
         this.submitMovie(input)
         e.target.reset();
         this.resetState()
@@ -110,7 +104,7 @@ class Movie extends React.Component{
 
         <div className="container">
           <div className="row">
-            {this.state.files.map((b, i) =>
+            {this.state.files.map((b) =>
             <div className="col-lg-3">
                 <img className="img-responsive" src={b.base64}></img>
             </div>
@@ -123,7 +117,7 @@ class Movie extends React.Component{
 }
 
 // map state from store to props
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return {
     movies: state.movies
   }
