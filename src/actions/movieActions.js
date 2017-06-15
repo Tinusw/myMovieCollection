@@ -7,10 +7,10 @@ export const createMovie = (movie) => {
   }
 };
 
-export const deleteMovie = (id) => {
-  console.log('action triggered. movie index:' + id)
+export const deleteMovie = (movie) => {
+  console.log('action triggered. movie index:' + movie)
   return {
     type: actionTypes.DELETE_MOVIE,
-    id
+    movie
   }
 }

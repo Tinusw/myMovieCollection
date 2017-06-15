@@ -16,19 +16,21 @@ class MovieList extends React.Component{
   handleClick(id) {
     dispatch(deleteMovie(id))
   }
-  
+
   render () {
     // Settings for slick-carousel
     let settings = {
       infinite: true,
       speed: 500
     }
+
+
     return (
       <div className='col-lg-12'>
-        {this.props.movies.map((b, i) =>
+        {this.props.movies && this.props.movies.map((b, i) =>
           <div key={i} className="col-lg-2">
-            <Slider {...settings}>
-              {b.images.map((b, z) =>
+            {b.images && b.images.map((b, z) =>
+              <Slider {...settings}>
                 <div className="img-wrapper">
                   <Icon name="trash" className="trash-icon" onClick={(e) =>
                     console.log(this.props.movies[i].id),
@@ -36,8 +38,9 @@ class MovieList extends React.Component{
                   }/>
                   <img className="img-responsive" key={z} src={b.base64}></img>
                 </div>
-              )}
-            </Slider>
+              </Slider>
+            )}
+
             <div className="text-left info">
               <h2>{b.title}</h2>
               <p>{b.genre}</p>
@@ -59,8 +62,8 @@ const mapStateToProps = (state) => {
 // Map actions to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMovieClick: (id) => {
-      dispatch(deleteMovie(id))
+    onMovieClick: (movie) => {
+      dispatch(deleteMovie(movie))
     }
   }
 }

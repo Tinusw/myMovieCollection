@@ -7,7 +7,7 @@ const movies =(state= [], action) => {
       ];
     case 'DELETE_MOVIE':
       return [
-        state.filter(({ id }) => id  !== action.id)
+        ...state.filter(({ id }) => id  !== action.id)
       ]
     default:
       return state
