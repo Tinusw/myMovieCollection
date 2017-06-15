@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as movieActions from '../../actions/movieActions'
 import FileBase64 from 'react-file-base64'
 import { v4 } from 'uuid'
+
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './moviePage.scss'

@@ -1,4 +1,4 @@
-const movies =(state= [], action) => {
+export const movies =(state= [], action) => {
   switch (action.type){
     case 'CREATE_MOVIE':
       return [
@@ -9,9 +9,23 @@ const movies =(state= [], action) => {
       return [
         ...state.filter(({ id }) => id  !== action.id)
       ]
+    case 'FETCH_MOVIE':
+      return [
+        action.id
+      ]
     default:
       return state
   }
 };
 
+// export const movie =(state=[], action) => {
+//   switch (action.type) {
+//     case 'FETCH_MOVIE':
+//       return [
+//         state.find(id => id === action.id)
+//       ]
+//     default:
+//       return state;
+//   }
+// }
 export default movies

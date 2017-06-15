@@ -3,6 +3,7 @@ import Slider from 'react-slick'
 import { dispatch, connect } from 'react-redux'
 import {Icon} from 'react-fa'
 import { deleteMovie } from '../../actions/movieActions'
+import { Link } from 'react-router'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -44,6 +45,7 @@ class MovieList extends React.Component{
             <div className="text-left info">
               <h2>{b.title}</h2>
               <p>{b.genre}</p>
+              <Link to={`/movies/${b.id}`}>Show</Link>
             </div>
           </div>
         )}
