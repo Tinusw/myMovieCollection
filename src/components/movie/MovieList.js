@@ -32,10 +32,9 @@ class MovieList extends React.Component{
             {b.images && b.images.map((b, z) =>
               <Slider {...settings}>
                 <div className="img-wrapper">
-                  <Icon name="trash" className="trash-icon" onClick={(e) =>
-                    console.log(this.props.movies[i].id),
-                    this.props.onMovieClick.bind(this.props.movies[i].id)
-                  }/>
+                  <Icon name="trash" className="trash-icon" onClick={(event) => {
+                    this.props.onMovieClick(this.props.movies[i].id)
+                  }}/>
                   <img className="img-responsive" key={z} src={b.base64}></img>
                 </div>
               </Slider>
@@ -62,8 +61,8 @@ const mapStateToProps = (state) => {
 // Map actions to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMovieClick: (movie) => {
-      dispatch(deleteMovie(movie))
+    onMovieClick: (id) => {
+      dispatch(deleteMovie(id))
     }
   }
 }
