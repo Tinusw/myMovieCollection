@@ -34,6 +34,7 @@ class Movie extends React.Component{
     let director
     let genre
     let description
+    let images = this.state.files
 
     return (
       <div className="container">
@@ -44,19 +45,27 @@ class Movie extends React.Component{
       <form className='horizontal' onSubmit={e => {
         e.preventDefault();
         if (!title.value.trim()) {
+          title.focus()
           return
         }
         if (!director.value.trim()){
+          title.focus()
           return
         }
         if (!genre.value.trim()){
+          genre.focus()
           return
         }
         if (!description.value.trim()){
+          description.focus()
+          return
+        }
+        if(!images.length > 0){
+          alert('please upload at least one image')
           return
         }
         // Set our form values as an object
-        var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: this.state.files, id: v4()}
+        var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: images, id: v4()}
         this.submitMovie(input)
         e.target.reset();
         this.resetState()
@@ -90,7 +99,8 @@ class Movie extends React.Component{
           <div className="col-sm-6 text-left">
             <FileBase64
               multiple={ true }
-              onDone={ this.getFiles.bind(this) } />
+              onDone={ this.getFiles.bind(this) }
+             />
           </div>
         </div>
         <div className="form-group">
