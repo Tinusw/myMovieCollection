@@ -9,8 +9,8 @@ const App = (props) => {
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><Link to="/" onClick={ proxy => proxy.stopPropagation()}>My Collection</Link></li>
-              <li><Link to="/movies" onClick={ proxy => proxy.stopPropagation()}>Add Movie</Link></li>
+              <li><Link to="/">My Collection</Link></li>
+              <li><Link to="/movies">Add Movie</Link></li>
             </ul>
           </div>
         </div>

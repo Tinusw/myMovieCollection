@@ -29,16 +29,17 @@ class MovieList extends React.Component{
       <div className='col-lg-12'>
         {this.props.movies && this.props.movies.map((b, i) =>
           <div key={i} className="col-lg-2">
-            {b.images && b.images.map((b, z) =>
-              <Slider {...settings}>
+            <Slider {...settings}>
+              {b.images && b.images.map((b, z) =>
                 <div className="img-wrapper">
                   <Icon name="trash" className="trash-icon" onClick={(event) => {
+                    event.preventDefault()
                     this.props.onMovieClick(this.props.movies[i].id)
                   }}/>
                   <img className="img-responsive" key={z} src={b.base64}></img>
                 </div>
-              </Slider>
-            )}
+              )}
+            </Slider>
 
             <div className="text-left info">
               <h2>{b.title}</h2>
