@@ -1,6 +1,8 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import movieApp from '../reducers';
+import {persistStore, autoRehydrate} from 'redux-persist'
+
 
 export default function configureStore(initialState) {
   const middewares = [
@@ -12,7 +14,8 @@ export default function configureStore(initialState) {
   ];
 
   return createStore(movieApp, initialState, compose(
-    applyMiddleware(...middewares)
+    applyMiddleware(...middewares),
+    autoRehydrate()
     )
   );
 }

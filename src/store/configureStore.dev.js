@@ -5,6 +5,7 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import movieApp from '../reducers';
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 
 export default function configureStore(initialState) {
@@ -18,9 +19,12 @@ export default function configureStore(initialState) {
 
   const store = createStore(movieApp, initialState, compose(
     applyMiddleware(...middewares),
+    autoRehydrate(),
     window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )
   );
+
+  persistStore(store)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
