@@ -12,20 +12,13 @@ class Movie extends React.Component{
   constructor(props){
     super (props)
     this.state = {
-      id: this.props.movie ? this.props.movie.id : null,
-      title: this.props.movie ? this.props.movie.title : '',
-      director: this.props.movie ? this.props.movie.director : '',
-      genre: this.props.movie ? this.props.movie.genre : '',
-      description: this.props.movie ? this.props.movie.description : '',
-      images: this.props.movie ? this.props.movie.images : '',
-      files: this.props.movie ? this.props.movie.images : []
+      files: this.props.movie.images ? this.props.movie.images : []
     }
-    console.log(this.state)
   }
 
-  submitMovie(input){
-    input.id = this.state.id;
-    this.props.createOrUpdateMovie(input)
+  submitMovie(data){
+    data.id = this.props.movie.id;
+    this.props.createOrUpdateMovie(data)
     this.props.router.push('/')
   }
 
@@ -85,25 +78,25 @@ class Movie extends React.Component{
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Title:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" placeholder="Snatch" defaultValue={this.state.title} ref={node => title = node}/>
+                <input className="form-control" type="text" name="title" placeholder="Snatch" defaultValue={this.props.movie.title} ref={node => title = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Director:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" defaultValue={this.state.director} placeholder="Guy Ritchie" ref={node => director = node}/>
+                <input className="form-control" type="text" name="title" defaultValue={this.props.movie.director} placeholder="Guy Ritchie" ref={node => director = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Genre:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" defaultValue={this.state.genre} placeholder="Crime" ref={node => genre = node}/>
+                <input className="form-control" type="text" name="title" defaultValue={this.props.movie.genre} placeholder="Crime" ref={node => genre = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">description:</label>
               <div className="col-sm-9 text-left">
-                <textarea className="form-control" type="text" name="title" placeholder="A great film" defaultValue={this.state.description} ref={node => description = node}/>
+                <textarea className="form-control" type="text" name="title" placeholder="A great film" defaultValue={this.props.movie.description} ref={node => description = node}/>
               </div>
             </div>
             <div className="form-group">
@@ -143,16 +136,26 @@ class Movie extends React.Component{
   }
 }
 
+Movie.defaultProps = {
+  movie: {
+    id: null,
+    title: '',
+    director: '',
+    genre: '',
+    description: '',
+    images: '',
+    files: []
+  }
+}
+
 // map state from store to props
 const mapStateToProps = (state, props) => {
   if(props.params.id) {
-    console.log('id available')
     return {
-      movie: state.movies.find(movie => movie.id === props.params.id)
+      movie: state.movies.find((movie) => movie.id === props.params.id)
     }
   }
   return {
-    movie: null
   }
 };
 
