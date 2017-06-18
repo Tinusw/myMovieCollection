@@ -9,10 +9,6 @@ export const movies =(state= [], action) => {
       return [
         ...state.filter(({ id }) => id  !== action.id)
       ]
-    case 'FETCH_MOVIE':
-      return [
-        action.id
-      ]
     default:
       return state
   }
