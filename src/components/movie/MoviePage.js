@@ -1,16 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import * as movieActions from '../../actions/movieActions'
 import FileBase64 from 'react-file-base64'
-import { Redirect } from 'react-router'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './moviePage.scss'
 
-class Movie extends React.Component{
+class MoviePage extends React.Component{
   constructor(props){
-    super (props)
+    super(props)
     this.state = {
       files: this.props.movie.images ? this.props.movie.images : []
     }
@@ -19,7 +16,6 @@ class Movie extends React.Component{
   submitMovie(data){
     data.id = this.props.movie.id;
     this.props.createOrUpdateMovie(data)
-    this.props.router.push('/')
   }
 
   // GetFiles from FileBase64 uploader and set to state
@@ -33,7 +29,7 @@ class Movie extends React.Component{
     this.setState({ files: [] })
   }
 
-  render () {
+  render() {
     let title
     let director
     let genre
@@ -72,7 +68,7 @@ class Movie extends React.Component{
             var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: images}
             console.log(input)
             this.submitMovie(input)
-            e.target.reset();
+            e.target.reset()
             this.resetState()
           }}>
             <div className="form-group">
@@ -136,7 +132,7 @@ class Movie extends React.Component{
   }
 }
 
-Movie.defaultProps = {
+MoviePage.defaultProps = {
   movie: {
     id: null,
     title: '',
@@ -145,25 +141,8 @@ Movie.defaultProps = {
     description: '',
     images: '',
     files: []
-  }
+  },
+  createOrUpdateMovie: (movie) => {}
 }
 
-// map state from store to props
-const mapStateToProps = (state, props) => {
-  if(props.params.id) {
-    return {
-      movie: state.movies.find((movie) => movie.id === props.params.id)
-    }
-  }
-  return {
-  }
-};
-
-// Map actions to props
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createOrUpdateMovie: movie => dispatch(movieActions.createOrUpdateMovie(movie))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Movie)
+export default MoviePage

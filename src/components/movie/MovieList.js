@@ -1,6 +1,5 @@
 import React from 'react'
 import Slider from 'react-slick'
-import { dispatch, connect } from 'react-redux'
 import {Icon} from 'react-fa'
 import { deleteMovie } from '../../actions/movieActions'
 import { Link } from 'react-router'
@@ -11,14 +10,10 @@ import './MovieList.scss'
 
 class MovieList extends React.Component{
   constructor(props){
-    super (props)
+    super(props)
   }
 
-  handleClick(id) {
-    dispatch(deleteMovie(id))
-  }
-
-  render () {
+  render() {
     // Settings for slick-carousel
     let settings = {
       infinite: true,
@@ -34,7 +29,7 @@ class MovieList extends React.Component{
                 <div key={z+'image'} className="img-wrapper">
                   <Icon name="trash" className="trash-icon" onClick={(event) => {
                     event.preventDefault()
-                    this.props.onMovieClick(movie.id)
+                    this.props.onClickDelete(movie.id)
                   }}/>
                   <img className="img-responsive" src={image.base64}></img>
                 </div>
@@ -54,23 +49,8 @@ class MovieList extends React.Component{
 }
 
 MovieList.defaultProps = {
-  movies: []
+  movies: [],
+  onClickDelete: () => {}
 }
 
-// map state from store to props
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies
-  }
-};
-
-// Map actions to props
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onMovieClick: (id) => {
-      dispatch(deleteMovie(id))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList)
+export default MovieList

@@ -1,10 +1,10 @@
 import React from 'react'
-import MovieList from '../../components/movie/MovieList'
+import MovieListContainer from '../../components/movie/MovieListContainer'
 
 const Home = () => {
   return (
     <div className="col-lg-12">
-      <MovieList/>
+      <MovieListContainer/>
     </div>
   )
 }
