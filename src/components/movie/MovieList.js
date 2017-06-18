@@ -25,33 +25,36 @@ class MovieList extends React.Component{
       speed: 500
     }
 
-
     return (
       <div className='col-lg-12'>
-        {this.props.movies && this.props.movies.map((b, i) =>
-          <div key={i} className="col-lg-2">
+        {this.props.movies.map((movie, i) =>
+          <div key={movie.id} className="col-lg-2">
             <Slider {...settings}>
-              {b.images && b.images.map((b, z) =>
-                <div className="img-wrapper">
+              {movie.images && movie.images.map((image, z) =>
+                <div key={z+'image'} className="img-wrapper">
                   <Icon name="trash" className="trash-icon" onClick={(event) => {
                     event.preventDefault()
-                    this.props.onMovieClick(this.props.movies[i].id)
+                    this.props.onMovieClick(movie.id)
                   }}/>
-                  <img className="img-responsive" key={z} src={b.base64}></img>
+                  <img className="img-responsive" src={image.base64}></img>
                 </div>
               )}
             </Slider>
 
             <div className="text-left info">
-              <h2>{b.title}</h2>
-              <p>{b.genre}</p>
-              <Link to={`/movie/${b.id}`}>Edit</Link>
+              <h2>{movie.title}</h2>
+              <p>{movie.genre}</p>
+              <Link to={`/movie/${movie.id}`}>Edit</Link>
             </div>
           </div>
         )}
       </div>
     )
   }
+}
+
+MovieList.defaultProps = {
+  movies: []
 }
 
 // map state from store to props

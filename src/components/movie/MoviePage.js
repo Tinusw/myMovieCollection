@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import * as movieActions from '../../actions/movieActions'
 import FileBase64 from 'react-file-base64'
+import { Redirect } from 'react-router'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -11,27 +11,27 @@ import './moviePage.scss'
 class Movie extends React.Component{
   constructor(props){
     super (props)
+    this.state = {
+      id: this.props.movie ? this.props.movie.id : null,
+      title: this.props.movie ? this.props.movie.title : '',
+      director: this.props.movie ? this.props.movie.director : '',
+      genre: this.props.movie ? this.props.movie.genre : '',
+      description: this.props.movie ? this.props.movie.description : '',
+      images: this.props.movie ? this.props.movie.images : '',
+      files: this.props.movie ? this.props.movie.images : []
+    }
+    console.log(this.state)
   }
-
-  getDefaultProps: function(){
-    return {
-      id: null,
-      title: '',
-      director: '',
-      genre: '',
-      description: '',
-      images: '',
-      files: [],
-    };
-}
 
   submitMovie(input){
     input.id = this.state.id;
     this.props.createOrUpdateMovie(input)
+    this.props.router.push('/')
   }
 
   // GetFiles from FileBase64 uploader and set to state
   getFiles(files){
+    // We set initial state here so we can preview uploads
     this.setState({ files: files })
   }
 
@@ -79,34 +79,31 @@ class Movie extends React.Component{
             var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: images}
             console.log(input)
             this.submitMovie(input)
-            this.setState({
-              redirectToNewPage: true
-            })
             e.target.reset();
             this.resetState()
           }}>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Title:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" placeholder="Snatch" defaultValue={this.props.title} ref={node => title = node}/>
+                <input className="form-control" type="text" name="title" placeholder="Snatch" defaultValue={this.state.title} ref={node => title = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Director:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" defaultValue={this.props.director} placeholder="Guy Ritchie" ref={node => director = node}/>
+                <input className="form-control" type="text" name="title" defaultValue={this.state.director} placeholder="Guy Ritchie" ref={node => director = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Genre:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" defaultValue={this.props.genre} placeholder="Crime" ref={node => genre = node}/>
+                <input className="form-control" type="text" name="title" defaultValue={this.state.genre} placeholder="Crime" ref={node => genre = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">description:</label>
               <div className="col-sm-9 text-left">
-                <textarea className="form-control" type="text" name="title" placeholder="A great film" defaultValue={this.props.description} ref={node => description = node}/>
+                <textarea className="form-control" type="text" name="title" placeholder="A great film" defaultValue={this.state.description} ref={node => description = node}/>
               </div>
             </div>
             <div className="form-group">
@@ -133,9 +130,9 @@ class Movie extends React.Component{
               <h2>Preview Images</h2>
             </div>
             <div className="col-lg-12 text-center">
-              {this.state.files.map((b) =>
-              <div className="col-lg-3">
-                  <img className="img-responsive" src={b.base64}></img>
+              {this.state.files.map((image, i) =>
+              <div key={i+'image'} className="col-lg-3">
+                  <img className="img-responsive" src={image.base64}></img>
               </div>
               )}
             </div>
@@ -151,7 +148,7 @@ const mapStateToProps = (state, props) => {
   if(props.params.id) {
     console.log('id available')
     return {
-      state.movies.find(movie => movie.id === props.params.id)
+      movie: state.movies.find(movie => movie.id === props.params.id)
     }
   }
   return {

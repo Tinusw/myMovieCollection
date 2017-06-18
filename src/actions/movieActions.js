@@ -10,7 +10,6 @@ export const createMovie = (movie) => {
 };
 
 export const deleteMovie = (id) => {
-  console.log('action triggered. movie index: ' + id)
   return {
     type: actionTypes.DELETE_MOVIE,
     id
@@ -25,7 +24,6 @@ export const updateMovie = (movie) => {
 }
 
 export const createOrUpdateMovie = (movie) => {
-  // debugger;
   if (movie.id) {
     return updateMovie(movie)
   }
