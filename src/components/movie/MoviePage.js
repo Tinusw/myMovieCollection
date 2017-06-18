@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 import * as movieActions from '../../actions/movieActions'
 import FileBase64 from 'react-file-base64'
-import { v4 } from 'uuid'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -11,20 +11,23 @@ import './moviePage.scss'
 class Movie extends React.Component{
   constructor(props){
     super (props)
-    this.state = {
-      id: this.props.movie ? this.props.movie.id : null,
-      title: this.props.movie ? this.props.movie.title : '',
-      director: this.props.movie ? this.props.movie.director : '',
-      genre: this.props.movie ? this.props.movie.genre : '',
-      description: this.props.movie ? this.props.movie.description : '',
-      images: this.props.movie ? this.props.movie.images : '',
-      files: this.props.movie ? this.props.movie.images : []
-    }
-    console.log(this.state)
   }
 
+  getDefaultProps: function(){
+    return {
+      id: null,
+      title: '',
+      director: '',
+      genre: '',
+      description: '',
+      images: '',
+      files: [],
+    };
+}
+
   submitMovie(input){
-    this.props.createMovie(input)
+    input.id = this.state.id;
+    this.props.createOrUpdateMovie(input)
   }
 
   // GetFiles from FileBase64 uploader and set to state
@@ -73,34 +76,37 @@ class Movie extends React.Component{
               return
             }
             // Set our form values as an object
-            var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: images, id: v4()}
+            var input ={title: title.value, director: director.value, genre: genre.value, description: description.value, images: images}
             console.log(input)
             this.submitMovie(input)
+            this.setState({
+              redirectToNewPage: true
+            })
             e.target.reset();
             this.resetState()
           }}>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Title:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" placeholder="Snatch" defaultValue={this.props.movie && this.props.movie.title} ref={node => title = node}/>
+                <input className="form-control" type="text" name="title" placeholder="Snatch" defaultValue={this.props.title} ref={node => title = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Director:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" defaultValue={this.props.movie && this.props.movie.director} placeholder="Guy Ritchie" ref={node => director = node}/>
+                <input className="form-control" type="text" name="title" defaultValue={this.props.director} placeholder="Guy Ritchie" ref={node => director = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">Genre:</label>
               <div className="col-sm-9 text-left">
-                <input className="form-control" type="text" name="title" defaultValue={this.props.movie && this.props.movie.description} placeholder="Crime" ref={node => genre = node}/>
+                <input className="form-control" type="text" name="title" defaultValue={this.props.genre} placeholder="Crime" ref={node => genre = node}/>
               </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-3 text-right">description:</label>
               <div className="col-sm-9 text-left">
-                <textarea className="form-control" type="text" name="title" placeholder="A great film" defaultValue={ this.props.movie && this.props.movie.description} ref={node => description = node}/>
+                <textarea className="form-control" type="text" name="title" placeholder="A great film" defaultValue={this.props.description} ref={node => description = node}/>
               </div>
             </div>
             <div className="form-group">
@@ -145,7 +151,7 @@ const mapStateToProps = (state, props) => {
   if(props.params.id) {
     console.log('id available')
     return {
-      movie: state.movies.find(movie => movie.id === props.params.id)
+      state.movies.find(movie => movie.id === props.params.id)
     }
   }
   return {
@@ -156,7 +162,7 @@ const mapStateToProps = (state, props) => {
 // Map actions to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    createMovie: movie => dispatch(movieActions.createMovie(movie))
+    createOrUpdateMovie: movie => dispatch(movieActions.createOrUpdateMovie(movie))
   }
 }
 
