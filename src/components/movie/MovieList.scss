@@ -9,9 +9,9 @@
     position: absolute;
     @extend %font-sh-extra-large;;
     color: $m-blue-text;
-    margin-left: 130px;
     transition: 1s;
     z-index: 99;
+    margin-left: 1%;
     cursor: pointer;
     &:hover{
       transition: 0.5s;

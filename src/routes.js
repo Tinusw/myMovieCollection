@@ -10,6 +10,6 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home}></IndexRoute>
     <Route path="/movies" component={Movie}></Route>
-    <Route path="/movies/:id" component={MovieDetailsPage}></Route>
+    <Route path="/movie/:id" component={Movie}></Route>
   </Route>
 )

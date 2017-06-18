@@ -14,11 +14,3 @@ export const deleteMovie = (id) => {
     id
   }
 }
-
-export const fetchMovie = (movies) => {
-  console.log('fetch triggered' + movies)
-  return {
-    type: actionTypes.FETCH_MOVIE,
-    movies
-  }
-}

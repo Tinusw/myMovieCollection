@@ -1,5 +1,4 @@
 import React from 'react'
-import Slider from 'react-slick'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -12,11 +11,11 @@ const MovieDetails = (movie) => {
 
   return (
     <div className='col-lg-12'>
+      <h1>yo</h1>
       <div className='col-lg-2'>
-        
         <div className="text-left info">
-          <h2>{movie.title}</h2>
-          <p>{movie.genre}</p>
+          <h2>{this.props.movie.title}</h2>
+          <p>{this.props.movie.genre}</p>
         </div>
       </div>
     </div>

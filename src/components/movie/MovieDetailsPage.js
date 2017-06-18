@@ -8,15 +8,11 @@ class MovieDetailsPage extends React.Component {
     super(props, context)
   }
 
-  componentDidMount(){
-    this.props.fetchMovie(this.props.params.id)
-  }
-
   render(){
     return (
       <div>
         <h1>Movie Details Page</h1>
-        <MovieDetails movie={this.props.movie}/>
+        <MovieDetails movie={this.movie}/>
       </div>
     )
   }
@@ -28,10 +24,5 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMovie: movieId => dispatch(movieActions.fetchMovie(movieId))
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailsPage)
+export default connect()(MovieDetailsPage)

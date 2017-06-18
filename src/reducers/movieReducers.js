@@ -9,6 +9,22 @@ export const movies =(state= [], action) => {
       return [
         ...state.filter(({ id }) => id  !== action.id)
       ]
+    case 'FETCH_MOVIE':
+      const index = state.findIndex(movie => movie.id === action.movie.id)
+      if(index > -1){
+        console.log('found movie')
+        return state.map(movie => {
+          if (movie.id === action.movie.id) return action.movie
+          return movie
+        })
+      } else {
+        console.log('not found')
+        return [
+          ...state,
+          action.movie
+        ]
+      }
+      return
     default:
       return state
   }

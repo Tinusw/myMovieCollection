@@ -45,7 +45,7 @@ class MovieList extends React.Component{
             <div className="text-left info">
               <h2>{b.title}</h2>
               <p>{b.genre}</p>
-              <Link to={`/movies/${b.id}`}>Show</Link>
+              <Link to={`/movie/${b.id}`}>Edit</Link>
             </div>
           </div>
         )}
