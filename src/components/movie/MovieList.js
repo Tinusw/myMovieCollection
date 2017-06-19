@@ -35,11 +35,20 @@ class MovieList extends React.Component{
                 </div>
               )}
             </Slider>
-
             <div className="text-left info">
-              <h2>{movie.title}</h2>
-              <p>{movie.genre}</p>
-              <Link to={`/movie/${movie.id}`}>Edit</Link>
+              <div className="span">
+                <div className="col-lg-10">
+                  <h4>{movie.title}</h4>
+                  <h5>{movie.director}</h5>
+                </div>
+                <div className="col-lg-2 text-right">
+                  <Link to={`/movie/${movie.id}`}>Edit</Link>
+                </div>
+              </div>
+              <div className="col-lg-12">
+                <h5>{movie.description}</h5>
+                <h5 className="text-center">{movie.genre}</h5>
+              </div>
             </div>
           </div>
         )}

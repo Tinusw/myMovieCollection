@@ -20,14 +20,4 @@ export const movies =(state= [], action) => {
   }
 };
 
-// export const movie =(state=[], action) => {
-//   switch (action.type) {
-//     case 'FETCH_MOVIE':
-//       return [
-//         state.find(id => id === action.id)
-//       ]
-//     default:
-//       return state;
-//   }
-// }
 export default movies
