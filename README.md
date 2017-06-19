@@ -2,9 +2,37 @@
 
 A single page application where a user can manage their movie collection.
 
+###Features
+
+- Redux as our stores source of truth
+- Full CRUD functionality
+- Store is persisted to local storage
+- Image Uploads & rendering from store
+
+###Assumptions
+This projects image upload functionality converts uploaded files to a Base64 string. We assume that users will only attempt to upload images.
+
 ## Getting Started
+`git clone https://github.com/Tinusw/myMovieCollection.git`
+
 `cd movie-collection`
+
 `npm install`
+
+### To Be Noted
+In this project we make use of an npm package named [react-file-base64](https://github.com/BosNaufal/react-file-base64). You may run into the following error:
+
+```
+ERROR in ./~/react-file-base64/src/js/components/react-file-base64.js
+Module parse failed: /Users/wilfred.godfrey/www/ffxnz-quiz-authoring-frontend/node_modules/react-file-base64/src/js/components/react-file-base64.js Unexpected token (70:6)
+You may need an appropriate loader to handle this file type.
+...
+```
+
+To resolve this error install the package from the following branch which is currently pending approval in the [following PR](https://github.com/BosNaufal/react-file-base64/pull/4)
+
+`npm install https://github.com/lrojas94/react-file-base64`
+
 `npm start`
 
 ## Tech & Tools
@@ -19,29 +47,34 @@ Why Slingshot?
 2. **Rapid feedback** - Each time you hit save, changes hot reload and linting and automated tests run.
 3. **One command line to check** - All feedback is displayed on a single command line.
 4. **No more JavaScript fatigue** - Slingshot uses the most popular and powerful libraries for working with React.
-5. **Automated production build** - Type `npm run build` to do all this:
-
-#### Technologies
-Slingshot offers a rich development experience using the following technologies:
-
-| **Tech** | **Description** |**Learn More**|
-|----------|-------|---|
-|  [React](https://facebook.github.io/react/)  |   Fast, composable client-side components.    | [Pluralsight Course](https://www.pluralsight.com/courses/react-flux-building-applications)  |
-|  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable, hot reloadable store. Supports time-travel debugging. Lean alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Getting Started with Redux](https://egghead.io/courses/getting-started-with-redux), [Building React Applications with Idiomatic Redux](https://egghead.io/courses/building-react-applications-with-idiomatic-redux), [Pluralsight Course](http://www.pluralsight.com/courses/react-redux-react-router-es6)|
-|  [React Router](https://github.com/reactjs/react-router) | A complete routing library for React | [Pluralsight Course](https://www.pluralsight.com/courses/react-flux-building-applications) |
-|  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today.     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](https://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
-| [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Includes hot reloading via [react-transform-hmr](https://www.npmjs.com/package/react-transform-hmr). | [Quick Webpack How-to](https://github.com/petehunt/webpack-howto) [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
-| [Browsersync](https://www.browsersync.io/) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
-| [Jest](https://facebook.github.io/jest/) | Automated tests with built-in expect assertions and [Enzyme](https://github.com/airbnb/enzyme) for DOM testing without a browser using Node. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
-| [TrackJS](https://trackjs.com/) | JavaScript error tracking. | [Free trial](https://my.trackjs.com/signup)|  
-| [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
-| [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
-| [PostCSS](https://github.com/postcss/postcss) | Transform styles with JS plugins. Used to autoprefix CSS |
-| [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
-| [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction), [Why not Gulp?](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n)  |
+5. **Automated production build** - Type `npm run build`
 
 ### [Redux](http://redux.js.org/)
 A predictable state container for JavaScript apps.
 
+#### Why Redux?
+The purpose of this challenge was to exclusively use localStorage, that immediately got me thinking [about this video](https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage), which lead me to dig into Redux as an option.
+
+What I like about redux, and what I think relates very well to this project is what [Redux calls it's First Principle](http://redux.js.org/docs/introduction/ThreePrinciples.html), it has a single source of truth, a single store.
+
+In my opinion that makes perfect sense for this particular project, I think Redux is appropriate because :
+
+1. It gives us the ability to persist all our films in a single store that's easy to observe and manipulate thanks to the developer tools and the nature of pure functions (redux loves pure functions).
+
+2. Organise our components a manner that responds specifically to an action (State Change), so logically finding problems is relatively straightforward.
+3. In theory, it should be relatively easy to test which can generally speaking be boiled down to evaluating the effects of a single action. Basically Pure Functions once again.
+
+4. Having not used Redux before I was curious to experiment with it :)
+
+
 ### [React Router](https://github.com/ReactTraining/react-router)
 Declarative routing for React
+
+###[Redux Persist](https://github.com/rt2zz/redux-persist)
+persist and rehydrate a redux store
+
+###[React-fa](https://github.com/andreypopp/react-fa)
+For all our icon needs
+
+###[React-slick](https://github.com/akiran/react-slick)
+A react carousel component
