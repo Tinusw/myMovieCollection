@@ -23,6 +23,8 @@ export const updateMovie = (movie) => {
   }
 }
 
+// Since we use the same form for createMovie & updateMovie
+// We use this function to route to the correct action
 export const createOrUpdateMovie = (movie) => {
   if (movie.id) {
     return updateMovie(movie)
