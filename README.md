@@ -2,6 +2,8 @@
 
 A single page application where a user can manage their movie collection.
 
+![alt text](https://media.giphy.com/media/3oKIP90EiXR3d1wF6U/giphy.gif "Gif")
+
 ###Features
 
 - Redux as our stores source of truth
