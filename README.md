@@ -4,14 +4,14 @@ A single page application where a user can manage their movie collection.
 
 ![alt text](https://media.giphy.com/media/3oKIP90EiXR3d1wF6U/giphy.gif "Gif")
 
-###Features
+### Features
 
 - Redux as our stores source of truth
 - Full CRUD functionality
 - Store is persisted to local storage
 - Image Uploads & rendering from store
 
-###Assumptions
+### Assumptions
 
 1. This projects image upload functionality converts uploaded files to a Base64 string. We assume that users will only attempt to upload images.
 2. Let's assume that users will upload images of a relatively similar size.
@@ -74,11 +74,11 @@ In my opinion that makes perfect sense for this particular project, I think Redu
 ### [React Router](https://github.com/ReactTraining/react-router)
 Declarative routing for React
 
-###[Redux Persist](https://github.com/rt2zz/redux-persist)
+### [Redux Persist](https://github.com/rt2zz/redux-persist)
 persist and rehydrate a redux store
 
-###[React-fa](https://github.com/andreypopp/react-fa)
+### [React-fa](https://github.com/andreypopp/react-fa)
 For all our icon needs
 
-###[React-slick](https://github.com/akiran/react-slick)
+### [React-slick](https://github.com/akiran/react-slick)
 A react carousel component
