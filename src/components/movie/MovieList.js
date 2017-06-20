@@ -46,7 +46,7 @@ class MovieList extends React.Component{
                 </div>
               </div>
               <div className="col-lg-12">
-                <h5>{movie.description}</h5>
+                <h6>{movie.description}</h6>
                 <h5 className="text-center">{movie.genre}</h5>
               </div>
             </div>

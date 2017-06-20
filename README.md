@@ -10,7 +10,9 @@ A single page application where a user can manage their movie collection.
 - Image Uploads & rendering from store
 
 ###Assumptions
-This projects image upload functionality converts uploaded files to a Base64 string. We assume that users will only attempt to upload images.
+
+1. This projects image upload functionality converts uploaded files to a Base64 string. We assume that users will only attempt to upload images.
+2. Let's assume that users will upload images of a relatively similar size.
 
 ## Getting Started
 `git clone https://github.com/Tinusw/myMovieCollection.git`
