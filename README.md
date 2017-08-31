@@ -23,20 +23,6 @@ A single page application where a user can manage their movie collection.
 
 `npm install`
 
-### To Be Noted
-In this project we make use of an npm package named [react-file-base64](https://github.com/BosNaufal/react-file-base64). You may run into the following error:
-
-```
-ERROR in ./~/react-file-base64/src/js/components/react-file-base64.js
-Module parse failed: /Users/wilfred.godfrey/www/ffxnz-quiz-authoring-frontend/node_modules/react-file-base64/src/js/components/react-file-base64.js Unexpected token (70:6)
-You may need an appropriate loader to handle this file type.
-...
-```
-
-To resolve this error install the package from the following branch which is currently pending approval in the [following PR](https://github.com/BosNaufal/react-file-base64/pull/4)
-
-`npm install https://github.com/lrojas94/react-file-base64`
-
 `npm start`
 
 ## Tech & Tools
